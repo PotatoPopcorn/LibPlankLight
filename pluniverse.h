@@ -5,10 +5,10 @@
 
 namespace PlanktonLighting{
   //Creates a universe structure that can be used to send data to devices
-  class Universe{
+  class PLUniverse{
   public:
-    Universe();
-    ~Universe();
+    PLUniverse();
+    ~PLUniverse();
 
     int getChan(int chanNum);
     void setChan(int chanNum, int value);
