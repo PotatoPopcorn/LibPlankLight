@@ -28,8 +28,8 @@ bool PlanktonLighting::PLDevice::sendDMX(PlanktonLighting::PLUniverse universe)
   return false;
 }
 
-bool PlanktonLighting::PLDevice::sendMSG(std::string args)
+std::string PlanktonLighting::PLDevice::sendMSG(std::string args)
 {
   printf("Warn: PLDevice does not exist\n");
-  return false;
+  return "";
 }
