@@ -15,7 +15,7 @@ namespace PlanktonLighting{
     virtual bool initDevice(std::string args);
     virtual bool closeDevice();
 
-    virtual bool sendDMX(PlanktonLighting::PLUniverse universe);
+    virtual bool sendDMX(PlanktonLighting::PLUniverse *universe);
     virtual std::string sendMSG(std::string args);
   };
 }

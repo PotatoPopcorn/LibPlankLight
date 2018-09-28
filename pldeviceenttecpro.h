@@ -1,6 +1,8 @@
 #ifndef PLDEVICEENTTECPRO_H
 #define PLDEVICEENTTECPRO_H
 
+#include <string.h>
+
 #include "ftd2xx.h"
 
 #include "pldevice.h"
@@ -16,7 +18,7 @@ namespace PlanktonLighting
     bool initDevice(std::string args);
     bool closeDevice();
 
-    bool sendDMX(PlanktonLighting::PLUniverse universe);
+    bool sendDMX(PlanktonLighting::PLUniverse *universe);
     std::string sendMSG(std::string args);
   private:
     //Settings:

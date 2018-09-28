@@ -40,9 +40,15 @@ bool PlanktonLighting::PLDeviceEnttecPro::closeDevice()
 }
 
 
-bool PlanktonLighting::PLDeviceEnttecPro::sendDMX(PlanktonLighting::PLUniverse universe)
+bool PlanktonLighting::PLDeviceEnttecPro::sendDMX(PlanktonLighting::PLUniverse *universe)
 {
-
+  unsigned char dmxBuffer[513];
+  memset(dmxBuffer,0,sizeof(dmxBuffer));
+  for(int i = 1; i < 513; i++)
+  {
+    dmxBuffer[i] = universe->getChan(i);
+  }
+  sendData(6, dmxBuffer, 513);
 }
 
 std::string PlanktonLighting::PLDeviceEnttecPro::sendMSG(std::string args)
