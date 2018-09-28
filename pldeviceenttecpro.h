@@ -27,6 +27,8 @@ namespace PlanktonLighting
 
     FT_HANDLE handle;
 
+    int sendData(int label, unsigned char *data, int length);
+
   };
 }
 
