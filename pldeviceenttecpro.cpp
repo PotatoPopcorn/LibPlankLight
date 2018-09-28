@@ -49,11 +49,13 @@ bool PlanktonLighting::PLDeviceEnttecPro::sendDMX(PlanktonLighting::PLUniverse *
     dmxBuffer[i] = universe->getChan(i);
   }
   sendData(6, dmxBuffer, 513);
+  return true;
+
 }
 
 std::string PlanktonLighting::PLDeviceEnttecPro::sendMSG(std::string args)
 {
-
+  return "";
 }
 
 //Adapted from ENTTEC Sample Code

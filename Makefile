@@ -1,10 +1,12 @@
 CC=g++
+CP=cp
 CFLAGS=-fPIC
 
-output: pldevice pldeviceenttecpro pluniverse
-	$(CC) -shared -Wl,-soname,libplanklight.so.1 -o libplanklight.so.1.0 \
+shared: pldevice pldeviceenttecpro pluniverse
+	$(CC) -shared  -Wl,-soname,libplanklight.so -o libplanklight.so \
 	-L/usr/local/lib -lftd2xx \
 	pldevice.o pldeviceenttecpro.o pluniverse.o
+	$(CP) libplanklight.so /usr/lib/libplanklight.so
 
 pldevice: pldevice.cpp pldevice.h
 	$(CC) -fPIC -c pldevice.cpp
@@ -15,5 +17,9 @@ pldeviceenttecpro: pldeviceenttecpro.cpp pldeviceenttecpro.h
 pluniverse: pluniverse.cpp pluniverse.h
 	$(CC) -fPIC -c pluniverse.cpp
 
+test-EnttecOcean: testenttecocean.cpp shared
+	$(CC) -o test-EnttecOcean testenttecocean.cpp \
+	-L/usr/lib/ -lplanklight -L/usr/local/lib -lftd2xx -lboost_thread -lboost_system
+
 clean:
-	$(RM) *.o libplanklight.so.1.0
+	$(RM) *.o test-* libplanklight.so libplanklight.a
