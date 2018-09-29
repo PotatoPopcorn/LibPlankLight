@@ -23,6 +23,14 @@ bool PlanktonLighting::PLDeviceEnttecPro::initDevice(std::string args)
     FT_SetTimeouts(&handle,readTimeout,writeTimeout);
 		FT_SetUSBParameters(&handle,rxBufferSize,txBufferSize);
     FT_Purge (&handle,FT_PURGE_RX);
+    if(outputUniverse == 2)
+    {
+      if(!startUni2())
+      {
+        printf("Failed to start second universe \n");
+        return false;
+      }
+    }
     return true;
   }
   else
@@ -95,6 +103,7 @@ int PlanktonLighting::PLDeviceEnttecPro::sendData(int label, unsigned char *data
 // [Device Number] [Universe Number (1/2)]
 bool PlanktonLighting::PLDeviceEnttecPro::processArgs(std::string args)
 {
+  //Turn args into a vector and check all required have been parsed
   std::vector<std::string> argVec;
   boost::split(argVec, args, boost::is_any_of(" "), boost::token_compress_on );
   if(argVec.size() < 2)
@@ -102,6 +111,10 @@ bool PlanktonLighting::PLDeviceEnttecPro::processArgs(std::string args)
     printf("Too few arguments sent to Enttec Pro\n");
     return false;
   }
+
+  //Parse the device number
+  devNum = atoi(argVec[0].c_str());
+
   //Parse outputUniverse
   if(argVec[1] == "1"){
     outputUniverse = 1;
@@ -115,7 +128,20 @@ bool PlanktonLighting::PLDeviceEnttecPro::processArgs(std::string args)
     printf("Invalid arguments sent to Enttec Pro: Invalid Universe\n");
     return false;
   }
+  return true;
+}
 
-  devNum = atoi(argVec[0].c_str());
+bool PlanktonLighting::PLDeviceEnttecPro::startUni2()
+{
+  unsigned char apiKey[] = {0xC9, 0xA4, 0x03, 0xE4};
+  unsigned char* myKey = apiKey;
+  uint8_t portSet[] = {1,1};
+  unsigned int res = 0;
+  FT_Purge (handle,FT_PURGE_TX);
+	FT_Purge (handle,FT_PURGE_RX);
+  sendData(13, myKey, 4);
+  boost::this_thread::sleep(boost::posix_time::milliseconds(200));
+  sendData(147, portSet, 2);
+
   return true;
 }

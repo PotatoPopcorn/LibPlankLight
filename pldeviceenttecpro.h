@@ -7,6 +7,7 @@
 #include <vector>
 
 #include <boost/algorithm/string.hpp>
+#include <boost/thread/thread.hpp>
 
 #include "ftd2xx.h"
 
@@ -39,6 +40,7 @@ namespace PlanktonLighting
 
     int sendData(int label, unsigned char *data, int length);
     bool processArgs(std::string args);
+    bool startUni2();
 
   };
 }
