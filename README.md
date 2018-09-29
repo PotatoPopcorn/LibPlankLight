@@ -32,7 +32,5 @@ sudo rmmod ftdi_sio
 sudo rmmod usbserial
 ```
 
-
-
 ## Notes
-(1): Tested with Mk2, should work with Mk1 but hasn't been officially tested. Currently only universe 1 is supported. Support for both universes will be added soon
+(1): Tested with Mk2, should work with Mk1 but hasn't been tested. Currently only universe 1 is supported. Support for both universes will be added soon

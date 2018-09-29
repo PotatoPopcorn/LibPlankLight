@@ -1,7 +1,12 @@
 #ifndef PLDEVICEENTTECPRO_H
 #define PLDEVICEENTTECPRO_H
 
-#include <string.h>
+#include <cstring>
+#include <sstream>
+#include <string>
+#include <vector>
+
+#include <boost/algorithm/string.hpp>
 
 #include "ftd2xx.h"
 
@@ -27,9 +32,13 @@ namespace PlanktonLighting
     DWORD rxBufferSize = 40960;
     DWORD txBufferSize = 40960;
 
+    int devNum = 0;
+    int outputUniverse = 1;
+
     FT_HANDLE handle;
 
     int sendData(int label, unsigned char *data, int length);
+    bool processArgs(std::string args);
 
   };
 }

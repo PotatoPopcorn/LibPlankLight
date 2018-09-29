@@ -12,6 +12,10 @@ PlanktonLighting::PLDeviceEnttecPro::~PLDeviceEnttecPro()
 //Adapted from ENTTEC Sample Code
 bool PlanktonLighting::PLDeviceEnttecPro::initDevice(std::string args)
 {
+  if(!processArgs(args))
+  {
+    return false;
+  }
   FT_STATUS status;
   status = FT_Open(0, &handle);
   if(status == FT_OK)
@@ -86,4 +90,32 @@ int PlanktonLighting::PLDeviceEnttecPro::sendData(int label, unsigned char *data
     printf("ERROR: %i\n", status);
     return 1;
   }
+}
+
+// [Device Number] [Universe Number (1/2)]
+bool PlanktonLighting::PLDeviceEnttecPro::processArgs(std::string args)
+{
+  std::vector<std::string> argVec;
+  boost::split(argVec, args, boost::is_any_of(" "), boost::token_compress_on );
+  if(argVec.size() < 2)
+  {
+    printf("Too few arguments sent to Enttec Pro\n");
+    return false;
+  }
+  //Parse outputUniverse
+  if(argVec[1] == "1"){
+    outputUniverse = 1;
+  }
+  else if (argVec[1] == "2")
+  {
+    outputUniverse = 2;
+  }
+  else
+  {
+    printf("Invalid arguments sent to Enttec Pro: Invalid Universe\n");
+    return false;
+  }
+
+  devNum = atoi(argVec[0].c_str());
+  return true;
 }

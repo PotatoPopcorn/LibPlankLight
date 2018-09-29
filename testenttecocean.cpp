@@ -9,8 +9,12 @@
 int main(int argc, char ** argv)
 {
   PlanktonLighting::PLDeviceEnttecPro *enttec = new PlanktonLighting::PLDeviceEnttecPro();
-  bool res = enttec->initDevice("0");
-  printf("%d\n", res);
+  bool res = enttec->initDevice("0 1");
+  if(res == false)
+  {
+    printf("Failed to init device, Crashing\n");
+    return 1;
+  }
   PlanktonLighting::PLUniverse *uni = new PlanktonLighting::PLUniverse();
   uni->setChan(3, 255);
   uni->setChan(9, 255);
