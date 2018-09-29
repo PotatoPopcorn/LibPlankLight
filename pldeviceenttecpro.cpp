@@ -60,7 +60,18 @@ bool PlanktonLighting::PLDeviceEnttecPro::sendDMX(PlanktonLighting::PLUniverse *
   {
     dmxBuffer[i] = universe->getChan(i);
   }
-  sendData(6, dmxBuffer, 513);
+  if(outputUniverse == 1)
+  {
+    sendData(6, dmxBuffer, 513);
+  }
+  else if (outputUniverse == 2)
+  {
+    sendData(202, dmxBuffer, 513);
+  }
+  else
+  {
+    printf("OutputUniverse misconfigured\n");
+  }
   return true;
 
 }
