@@ -3,7 +3,7 @@ This is a library that is designed to make it easier to support multiple lightin
 
 ## Currently Supported:
 + Enttec DMX USB Pro (Untested) (1)
-+ Enttec DMX USB Pro Mk2 (Partial) (1)  
++ Enttec DMX USB Pro Mk2
 
 See notes at the bottom
 
@@ -33,4 +33,4 @@ sudo rmmod usbserial
 ```
 
 ## Notes
-(1): Tested with Mk2, should work with Mk1 but hasn't been tested. Currently only universe 1 is supported. Support for both universes will be added soon
+(1): Tested with Mk2, should work with Mk1 but hasn't been tested. Trying to initialise port 2 on Mk1 may fail, MIDI not supported. 
