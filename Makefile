@@ -21,5 +21,9 @@ test-EnttecOcean: testenttecocean.cpp shared
 	$(CC) -o test-EnttecOcean testenttecocean.cpp \
 	-L/usr/lib/ -lplanklight -L/usr/local/lib -lftd2xx -lboost_thread -lboost_system
 
+test-EnttecLoading: testenttecloading.cpp shared
+	$(CC) -o test-EnttecLoading testenttecloading.cpp \
+	-L/usr/lib/ -lplanklight -L/usr/local/lib -lftd2xx -lboost_thread -lboost_system
+
 clean:
 	$(RM) *.o test-* libplanklight.so libplanklight.a
