@@ -2,8 +2,8 @@
 This is a library that is designed to make it easier to support multiple lighting devices and formats. Currently only output is supported.
 
 ## Currently Supported:
-+ Enttec DMX USB Pro (Untested) (1)
-+ Enttec DMX USB Pro Mk2
++ Enttec DMX USB Pro (Untested) [1,2]
++ Enttec DMX USB Pro Mk2 [2]
 
 See notes at the bottom
 
@@ -21,8 +21,14 @@ Note: Currently only built on Linux.
 5. OPTIONAL: build tests
 
 ## Included tests
+**EnttecOff:**  
+Sets all channels on universe 1 to zero
+
 **EnttecOcean:**  
 Uses the EnttecPro Device and generates a 255 on channels 3 and 9 while 2 and 8 are random, generating a ocean like effect.
+
+**EnttecLoading:**  
+Uses the EnttecPro device to switch between channels 1, 2 and 3 while 4 is faded on and off.
 
 ## Known Issues
 **LibFTDI Conflict**  
@@ -33,4 +39,5 @@ sudo rmmod usbserial
 ```
 
 ## Notes
-(1): Tested with Mk2, should work with Mk1 but hasn't been tested. Trying to initialise port 2 on Mk1 may fail, MIDI not supported. 
+[1]: Tested with Mk2, should work with Mk1 but hasn't been tested. Trying to initialise port 2 on Mk1 may fail,  
+[2]: MIDI not supported.

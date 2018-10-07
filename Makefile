@@ -17,6 +17,10 @@ pldeviceenttecpro: pldeviceenttecpro.cpp pldeviceenttecpro.h
 pluniverse: pluniverse.cpp pluniverse.h
 	$(CC) -fPIC -c pluniverse.cpp
 
+test-EnttecOff: testenttecoff.cpp shared
+	$(CC) -o test-EnttecOff testenttecoff.cpp \
+	-L/usr/lib/ -lplanklight -L/usr/local/lib -lftd2xx -lboost_thread -lboost_system
+
 test-EnttecOcean: testenttecocean.cpp shared
 	$(CC) -o test-EnttecOcean testenttecocean.cpp \
 	-L/usr/lib/ -lplanklight -L/usr/local/lib -lftd2xx -lboost_thread -lboost_system

@@ -9,7 +9,7 @@
 int main(int argc, char ** argv)
 {
   PlanktonLighting::PLDeviceEnttecPro *enttec = new PlanktonLighting::PLDeviceEnttecPro();
-  bool res = enttec->initDevice("0 2");
+  bool res = enttec->initDevice("0 1");
   if(res == false)
   {
     printf("Failed to init device, Crashing\n");
