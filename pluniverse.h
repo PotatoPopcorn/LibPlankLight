@@ -13,6 +13,10 @@ namespace PlanktonLighting{
     int getChan(int chanNum);
     void setChan(int chanNum, int value);
 
+    void blackout();
+    void whiteout();
+    void setAll(int value);
+
   private:
     int channels[512];
   };

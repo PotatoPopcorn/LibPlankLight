@@ -51,3 +51,27 @@ void PlanktonLighting::PLUniverse::setChan(int chanNum, int value)
   //Change channel value
   channels[chanNum] = value;
 }
+
+void PlanktonLighting::PLUniverse::blackout()
+{
+  for(int i = 1; i < 513; i++)
+  {
+    setChan(i, 0);
+  }
+}
+
+void PlanktonLighting::PLUniverse::whiteout()
+{
+  for(int i = 1; i < 513; i++)
+  {
+    setChan(i, 255);
+  }
+}
+
+void PlanktonLighting::PLUniverse::setAll(int value)
+{
+  for(int i = 1; i < 513; i++)
+  {
+    setChan(i, value);
+  }
+}
