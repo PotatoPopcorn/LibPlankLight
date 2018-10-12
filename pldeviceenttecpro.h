@@ -12,6 +12,7 @@
 #include "ftd2xx.h"
 
 #include "pldevice.h"
+#include "plenttecutilities.h"
 
 namespace PlanktonLighting
 {
