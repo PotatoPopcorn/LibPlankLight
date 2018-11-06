@@ -8,6 +8,7 @@
 
 int main(int argc, char ** argv)
 {
+  //Start Enttec Device
   PlanktonLighting::PLDeviceEnttecPro *enttec = new PlanktonLighting::PLDeviceEnttecPro();
   bool res = enttec->initDevice("0 1");
   if(res == false)
@@ -15,10 +16,13 @@ int main(int argc, char ** argv)
     printf("Failed to init device, Crashing\n");
     return 1;
   }
+
+  // Create universe
   PlanktonLighting::PLUniverse *uni = new PlanktonLighting::PLUniverse();
+  //Effect Loop
   for(int i = 0; i < 100000; i++)
   {
-
+    //Create inner flash effect
     int inner = i % 512;
     if(inner<256)
     {
@@ -29,6 +33,7 @@ int main(int argc, char ** argv)
       uni->setChan(4, 511-inner);
     }
 
+    //Create outer loading effect
     int outer = i % 48;
     if(outer < 16)
     {
@@ -49,12 +54,14 @@ int main(int argc, char ** argv)
       uni->setChan(3, 255);
     }
 
+    //Send universe to device
     enttec->sendDMX(uni);
     boost::this_thread::sleep(boost::posix_time::milliseconds(5));
     printf("Frame\n");
 
   }
 
+  //Close the device and end the program
   enttec->closeDevice();
   return 0;
 }

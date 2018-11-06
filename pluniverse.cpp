@@ -52,6 +52,7 @@ void PlanktonLighting::PLUniverse::setChan(int chanNum, int value)
   channels[chanNum] = value;
 }
 
+// Set all channels to zero
 void PlanktonLighting::PLUniverse::blackout()
 {
   for(int i = 1; i < 513; i++)
@@ -60,6 +61,7 @@ void PlanktonLighting::PLUniverse::blackout()
   }
 }
 
+// Set all channels to full
 void PlanktonLighting::PLUniverse::whiteout()
 {
   for(int i = 1; i < 513; i++)
@@ -68,6 +70,7 @@ void PlanktonLighting::PLUniverse::whiteout()
   }
 }
 
+//Set all channels to a particular value
 void PlanktonLighting::PLUniverse::setAll(int value)
 {
   for(int i = 1; i < 513; i++)

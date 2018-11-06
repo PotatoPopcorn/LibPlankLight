@@ -1,5 +1,6 @@
 #include "pldeviceenttecpro.h"
 
+//Empty constructor and destructor
 PlanktonLighting::PLDeviceEnttecPro::PLDeviceEnttecPro()
 {
 
@@ -9,7 +10,7 @@ PlanktonLighting::PLDeviceEnttecPro::~PLDeviceEnttecPro()
 
 }
 
-//Adapted from ENTTEC Sample Code
+//Start Enttec Device using plenttecutilities
 bool PlanktonLighting::PLDeviceEnttecPro::initDevice(std::string args)
 {
   if(!processArgs(args))
@@ -28,13 +29,13 @@ bool PlanktonLighting::PLDeviceEnttecPro::initDevice(std::string args)
   return true;
 }
 
-//Adapted from ENTTEC Sample Code
+//Stop Enttec Device using plenttecutilities
 bool PlanktonLighting::PLDeviceEnttecPro::closeDevice()
 {
   return utils.closePro(handle);
 }
 
-
+//Send DMX to Enttec Device using plenttecutilities
 bool PlanktonLighting::PLDeviceEnttecPro::sendDMX(PlanktonLighting::PLUniverse *universe)
 {
   unsigned char dmxBuffer[513];
@@ -59,12 +60,13 @@ bool PlanktonLighting::PLDeviceEnttecPro::sendDMX(PlanktonLighting::PLUniverse *
 
 }
 
+// Ignored, might be implemented later
 std::string PlanktonLighting::PLDeviceEnttecPro::sendMSG(std::string args)
 {
   return "";
 }
 
-
+// Processes arguments that are parsed to the initdevice
 // [Device Number] [Universe Number (1/2)]
 bool PlanktonLighting::PLDeviceEnttecPro::processArgs(std::string args)
 {

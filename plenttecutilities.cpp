@@ -1,5 +1,6 @@
 #include "plenttecutilities.h"
 
+//Empty constructor and destructor
 PlanktonLighting::PLEnttecUtilities::PLEnttecUtilities()
 {
 
@@ -10,6 +11,7 @@ PlanktonLighting::PLEnttecUtilities::~PLEnttecUtilities()
 
 }
 
+// Send data to the device
 int PlanktonLighting::PLEnttecUtilities::sendData(
   int label, unsigned char *data, int length, FT_HANDLE &handle)
 {
@@ -39,6 +41,8 @@ int PlanktonLighting::PLEnttecUtilities::sendData(
     return 1;
   }
 }
+
+//Recieve data from device
 int PlanktonLighting::PLEnttecUtilities::recieveData(
   int label, unsigned char *data, int exLength, FT_HANDLE &handle)
 {
@@ -97,7 +101,9 @@ int PlanktonLighting::PLEnttecUtilities::recieveData(
   return 0;
 }
 
-bool PlanktonLighting::PLEnttecUtilities::initPro(int devNum, FT_HANDLE &handle, int readTimeout, int writeTimeout, DWORD rxBufferSize, DWORD txBufferSize)
+//Start the device
+bool PlanktonLighting::PLEnttecUtilities::initPro(
+  int devNum, FT_HANDLE &handle, int readTimeout, int writeTimeout, DWORD rxBufferSize, DWORD txBufferSize)
 {
   FT_STATUS status;
   status = FT_Open(devNum, &handle);
@@ -106,14 +112,6 @@ bool PlanktonLighting::PLEnttecUtilities::initPro(int devNum, FT_HANDLE &handle,
     FT_SetTimeouts(handle,readTimeout,writeTimeout);
 		FT_SetUSBParameters(handle,rxBufferSize,txBufferSize);
     FT_Purge (handle,FT_PURGE_RX);
-    /*if(outputUniverse == 2)
-    {
-      if(!startUni2())
-      {
-        printf("Failed to start second universe \n");
-        return false;
-      }
-    }*/
     return true;
   }
   else
@@ -124,6 +122,7 @@ bool PlanktonLighting::PLEnttecUtilities::initPro(int devNum, FT_HANDLE &handle,
   return false;
 }
 
+//Enable the second port on the enttec device
 bool PlanktonLighting::PLEnttecUtilities::startUni2(FT_HANDLE &handle)
 {
   unsigned char apiKey[] = {0xC9, 0xA4, 0x03, 0xE4};
@@ -139,6 +138,7 @@ bool PlanktonLighting::PLEnttecUtilities::startUni2(FT_HANDLE &handle)
   return true;
 }
 
+//Close the enttec device
 bool PlanktonLighting::PLEnttecUtilities::closePro(FT_HANDLE &handle)
 {
   if(handle != NULL)
@@ -149,6 +149,7 @@ bool PlanktonLighting::PLEnttecUtilities::closePro(FT_HANDLE &handle)
   return false;
 }
 
+//Count the amount of devices connected to the
 int PlanktonLighting::PLEnttecUtilities::countDevices()
 {
   FT_STATUS status;
@@ -162,6 +163,7 @@ int PlanktonLighting::PLEnttecUtilities::countDevices()
   return devices;
 }
 
+//Check if device is an ENTTEC DMX USB PRO
 bool PlanktonLighting::PLEnttecUtilities::isProDevice(int devNum)
 {
   std::string proString("DMX USB PRO");
@@ -185,6 +187,7 @@ bool PlanktonLighting::PLEnttecUtilities::isProDevice(int devNum)
   return false;
 }
 
+//Get the version number of the Enttec device
 int PlanktonLighting::PLEnttecUtilities::getProVersionNum(int devNum)
 {
   int res = 0;
