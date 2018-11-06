@@ -42,7 +42,6 @@ namespace PlanktonLighting
     PlanktonLighting::PLEnttecUtilities utils;
 
     bool processArgs(std::string args);
-    bool startUni2();
 
   };
 }

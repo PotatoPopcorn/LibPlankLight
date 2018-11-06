@@ -5,6 +5,9 @@
 #include <cstring>
 #include <string>
 
+#include <boost/algorithm/string.hpp>
+#include <boost/thread/thread.hpp>
+
 #include "ftd2xx.h"
 
 namespace PlanktonLighting
@@ -17,6 +20,10 @@ namespace PlanktonLighting
 
     static int sendData(int label, unsigned char *data, int length, FT_HANDLE &handle);
     static int recieveData(int label, unsigned char *data, int length, FT_HANDLE &handle);
+
+    static bool initPro(int devNum, FT_HANDLE &handle, int readTimeout, int writeTimeout, DWORD rxBufferSize, DWORD txBufferSize);
+    static bool startUni2(FT_HANDLE &handle);
+    static bool closePro(FT_HANDLE &handle);
 
     static int countDevices();
     static bool isProDevice(int devNum);

@@ -97,6 +97,58 @@ int PlanktonLighting::PLEnttecUtilities::recieveData(
   return 0;
 }
 
+bool PlanktonLighting::PLEnttecUtilities::initPro(int devNum, FT_HANDLE &handle, int readTimeout, int writeTimeout, DWORD rxBufferSize, DWORD txBufferSize)
+{
+  FT_STATUS status;
+  status = FT_Open(devNum, &handle);
+  if(status == FT_OK)
+  {
+    FT_SetTimeouts(handle,readTimeout,writeTimeout);
+		FT_SetUSBParameters(handle,rxBufferSize,txBufferSize);
+    FT_Purge (handle,FT_PURGE_RX);
+    /*if(outputUniverse == 2)
+    {
+      if(!startUni2())
+      {
+        printf("Failed to start second universe \n");
+        return false;
+      }
+    }*/
+    return true;
+  }
+  else
+  {
+    printf("Error Connecting to ENTTEC DMX Pro. FTDI Error: %i\n", status);
+    return false;
+  }
+  return false;
+}
+
+bool PlanktonLighting::PLEnttecUtilities::startUni2(FT_HANDLE &handle)
+{
+  unsigned char apiKey[] = {0xC9, 0xA4, 0x03, 0xE4};
+  unsigned char* myKey = apiKey;
+  uint8_t portSet[] = {1,1};
+  unsigned int res = 0;
+  FT_Purge (handle,FT_PURGE_TX);
+	FT_Purge (handle,FT_PURGE_RX);
+  sendData(13, myKey, 4, handle);
+  boost::this_thread::sleep(boost::posix_time::milliseconds(200));
+  sendData(147, portSet, 2, handle);
+
+  return true;
+}
+
+bool PlanktonLighting::PLEnttecUtilities::closePro(FT_HANDLE &handle)
+{
+  if(handle != NULL)
+  {
+    FT_Close(&handle);
+    return true;
+  }
+  return false;
+}
+
 int PlanktonLighting::PLEnttecUtilities::countDevices()
 {
   FT_STATUS status;
@@ -135,6 +187,12 @@ bool PlanktonLighting::PLEnttecUtilities::isProDevice(int devNum)
 
 int PlanktonLighting::PLEnttecUtilities::getProVersionNum(int devNum)
 {
-  //TODO
-  return 0;
+  int res = 0;
+  FT_HANDLE handle;
+  uint8_t hversion;
+  initPro(devNum, handle, 120, 100, 40960, 40960);
+  sendData(14, NULL, 0, handle);
+  recieveData(14, (unsigned char *)&hversion, 1, handle);
+  closePro(handle);
+  return hversion;
 }

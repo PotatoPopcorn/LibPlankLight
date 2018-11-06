@@ -16,39 +16,22 @@ bool PlanktonLighting::PLDeviceEnttecPro::initDevice(std::string args)
   {
     return false;
   }
-  FT_STATUS status;
-  status = FT_Open(0, &handle);
-  if(status == FT_OK)
+  if(!utils.initPro(devNum, handle, readTimeout, writeTimeout, rxBufferSize, txBufferSize))
   {
-    FT_SetTimeouts(&handle,readTimeout,writeTimeout);
-		FT_SetUSBParameters(&handle,rxBufferSize,txBufferSize);
-    FT_Purge (&handle,FT_PURGE_RX);
-    if(outputUniverse == 2)
-    {
-      if(!startUni2())
-      {
-        printf("Failed to start second universe \n");
-        return false;
-      }
-    }
-    return true;
-  }
-  else
-  {
-    printf("Error Connecting to ENTTEC DMX Pro. FTDI Error: %i\n", status);
     return false;
   }
+
+  if(outputUniverse == 2)
+  {
+    return utils.startUni2(handle);
+  }
+  return true;
 }
 
 //Adapted from ENTTEC Sample Code
 bool PlanktonLighting::PLDeviceEnttecPro::closeDevice()
 {
-  if(handle != NULL)
-  {
-    FT_Close(&handle);
-    return true;
-  }
-  return false;
+  return utils.closePro(handle);
 }
 
 
@@ -110,20 +93,5 @@ bool PlanktonLighting::PLDeviceEnttecPro::processArgs(std::string args)
     printf("Invalid arguments sent to Enttec Pro: Invalid Universe\n");
     return false;
   }
-  return true;
-}
-
-bool PlanktonLighting::PLDeviceEnttecPro::startUni2()
-{
-  unsigned char apiKey[] = {0xC9, 0xA4, 0x03, 0xE4};
-  unsigned char* myKey = apiKey;
-  uint8_t portSet[] = {1,1};
-  unsigned int res = 0;
-  FT_Purge (handle,FT_PURGE_TX);
-	FT_Purge (handle,FT_PURGE_RX);
-  utils.sendData(13, myKey, 4, handle);
-  boost::this_thread::sleep(boost::posix_time::milliseconds(200));
-  utils.sendData(147, portSet, 2, handle);
-
   return true;
 }
