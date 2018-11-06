@@ -21,6 +21,9 @@ Note: Currently only built on Linux.
 5. OPTIONAL: build tests
 
 ## Included tests
+**ConnectedEnttecDevices**
+Shows how many Enttec Devices are connected.
+
 **EnttecOff:**  
 Sets all channels on universe 1 to zero
 
