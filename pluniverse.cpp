@@ -27,7 +27,7 @@ int PlanktonLighting::PLUniverse::getChan(int chanNum)
     printf("Warn: Invalid Channel Number: %i\n", chanNum);
     return -1;  //Return -1 which is an error
   }
-  return channels[chanNum]; //Return value if valud
+  return channels[chanNum-1]; //Return value if valud
 }
 
 /*
@@ -49,7 +49,7 @@ void PlanktonLighting::PLUniverse::setChan(int chanNum, int value)
   }
 
   //Change channel value
-  channels[chanNum] = value;
+  channels[chanNum-1] = value;
 }
 
 // Set all channels to zero

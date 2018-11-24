@@ -73,9 +73,9 @@ bool PlanktonLighting::PLDeviceEnttecPro::processArgs(std::string args)
   //Turn args into a vector and check all required have been parsed
   std::vector<std::string> argVec;
   boost::split(argVec, args, boost::is_any_of(" "), boost::token_compress_on );
-  if(argVec.size() < 2)
+  if(argVec.size() != 2)
   {
-    printf("Too few arguments sent to Enttec Pro\n");
+    printf("Incorrect number of arguments sent to Enttec Pro\n");
     return false;
   }
 

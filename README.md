@@ -8,7 +8,7 @@ This is a library that is designed to make it easier to support multiple lightin
 See notes at the bottom
 
 ## Required Libraries
-+ Boost (https://www.boost.org/)
++ Boost (https://www.boost.org/) [3]
 + FTD2xx Drivers (https://www.ftdichip.com/Drivers/D2XX.htm)
 
 Note: Currently only built on Linux.
@@ -41,6 +41,11 @@ sudo rmmod ftdi_sio
 sudo rmmod usbserial
 ```
 
+**Ubuntu Boost Incompatibility**  
+When installing, please make sure that your version of boost is later than 1.68, at time of writing the Ubuntu repositories use version 1.65 which will not work since there are changes with the `asio` library.  
+The latest version of boost can be downloaded from [the boost website](https://www.boost.org/).
+
 ## Notes
 [1]: Tested with Mk2, should work with Mk1 but hasn't been tested. Trying to initialise port 2 on Mk1 may fail,  
-[2]: MIDI not supported.
+[2]: MIDI not supported.  
+[3]: Must be at least version 1.68 (requires `io_context` to be in `boost_asio`),

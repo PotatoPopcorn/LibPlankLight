@@ -37,22 +37,27 @@ pluniverse: pluniverse.cpp pluniverse.h
 # Turn off all the lights
 test-EnttecOff: testenttecoff.cpp shared install
 	$(CC) -o test-EnttecOff testenttecoff.cpp \
-	-L/usr/lib/ -lplanklight -L/usr/local/lib -lftd2xx -lboost_thread -lboost_system
+	-lpthread -L/usr/lib -lplanklight -L/usr/local/lib -lftd2xx -lboost_thread -lboost_system
 
 # Show how many enttec devices are connected
 test-ConnectedEnttecDevices: testconnectedenttecdevices.cpp shared install
 	$(CC) -o test-ConnectedEnttecDevices testconnectedenttecdevices.cpp \
-	-L/usr/lib/ -lplanklight -L/usr/local/lib -lftd2xx -lboost_thread -lboost_system
+	-lpthread -L/usr/lib -lplanklight -L/usr/local/lib -lftd2xx -lboost_thread -lboost_system
 
 # Useless test
 test-EnttecOcean: testenttecocean.cpp shared install
 	$(CC) -o test-EnttecOcean testenttecocean.cpp \
-	-L/usr/lib/ -lplanklight -L/usr/local/lib -lftd2xx -lboost_thread -lboost_system
+	-lpthread -L/usr/lib -lplanklight -L/usr/local/lib -lftd2xx -lboost_thread -lboost_system
+
+# Useless test
+test-ArtnetLoading: testartnetloading.cpp shared install
+	$(CC) -o test-ArtnetLoading testartnetloading.cpp \
+	-lpthread -L/usr/lib -lplanklight -L/usr/local/lib -lftd2xx -lboost_thread -lboost_system
 
 # Useless test
 test-EnttecLoading: testenttecloading.cpp shared install
 	$(CC) -o test-EnttecLoading testenttecloading.cpp \
-	-L/usr/lib/ -lplanklight -L/usr/local/lib -lftd2xx -lboost_thread -lboost_system
+	-lpthread -L/usr/lib -lplanklight -L/usr/local/lib -lftd2xx -lboost_thread -lboost_system
 #END
 
 #Clean up everything this file creates
