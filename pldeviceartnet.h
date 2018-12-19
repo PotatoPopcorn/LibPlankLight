@@ -31,9 +31,11 @@ namespace PlanktonLighting
     //Artnet Variables:
     std::string m_address;
     int m_port = 6454;
+    unsigned char m_physical = 0;
     unsigned char m_subUni = 0;
     unsigned char m_net = 0;
     unsigned char m_seq = 0;
+    bool m_sendSeq = true;
 
     //Boost Variables
     boost::asio::io_context m_ioContext;

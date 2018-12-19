@@ -72,8 +72,11 @@ bool PlanktonLighting::PLDeviceArtnet::processArgs(std::string args)
   try{
     m_address = argVec[0];
     m_port = atoi(argVec[1].c_str());
-    m_subUni = (unsigned char) atoi(argVec[2].c_str());
-    m_net = (unsigned char) atoi(argVec[3].c_str());
+    m_physical = (unsigned char) atoi(argVec[2].c_str());
+    m_subUni = (unsigned char) atoi(argVec[3].c_str());
+    m_net = (unsigned char) atoi(argVec[4].c_str());
+    if(argVec[5] == "0"){ m_sendSeq = false; }
+    else if (argVec[5] != "1") {printf("ERROR Parsing send sequence in LPL Artnet");}
   }
   catch(std::exception& e)
   {
@@ -87,14 +90,17 @@ bool PlanktonLighting::PLDeviceArtnet::processArgs(std::string args)
 
 void PlanktonLighting::PLDeviceArtnet::incrementSequence()
 {
-  if (m_seq >= 256)
-	{
-		m_seq = 1;
-	}
-	else
-	{
-		++m_seq;
-	}
+  if(m_sendSeq)
+  {
+    if (m_seq >= 256)
+  	{
+  		m_seq = 1;
+  	}
+  	else
+  	{
+  		++m_seq;
+  	}
+  }
 }
 
 void PlanktonLighting::PLDeviceArtnet::keepAlive()
@@ -103,7 +109,7 @@ void PlanktonLighting::PLDeviceArtnet::keepAlive()
 	{
 		try
 		{
-			boost::array<unsigned char, 530> sendBuf = { 'A', 'r', 't', '-', 'N', 'e', 't', 0, 0, 0x50, 0, 0x0e, m_seq, 0, m_subUni, m_net, 0x02, 0 };
+			boost::array<unsigned char, 530> sendBuf = { 'A', 'r', 't', '-', 'N', 'e', 't', 0, 0, 0x50, 0, 0x0e, m_seq, m_physical, m_subUni, m_net, 0x02, 0 };
 			for (int i = 0; i < 512; ++i)
 			{
 				sendBuf.at(i + 18) = m_universe->getChan(i+1);

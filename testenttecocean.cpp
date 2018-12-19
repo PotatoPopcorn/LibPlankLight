@@ -18,15 +18,17 @@ int main(int argc, char ** argv)
   }
   // Create the universe and set constant values
   PlanktonLighting::PLUniverse *uni = new PlanktonLighting::PLUniverse();
-  uni->setChan(3, 255);
-  uni->setChan(9, 255);
+  uni->setChan(1, 255);
+  uni->setChan(7, 255);
+  uni->setChan(5, 255);
+  uni->setChan(11, 255);
 
   // Start loop to create effect
   for(int i = 0; i < 100000; i++)
   {
     printf("Frame\n");
-    uni->setChan(2, rand()%255);
-    uni->setChan(8, rand()%255);
+    uni->setChan(4, rand()%255);
+    uni->setChan(10, rand()%255);
 
     // Send universe to device and wait 0.1sec
     enttec->sendDMX(uni);
