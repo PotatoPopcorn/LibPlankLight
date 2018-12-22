@@ -11,7 +11,7 @@ int main(int argc, char ** argv)
   //Start Enttec Device
   printf("Hello World\n");
   PlanktonLighting::PLDeviceArtnet *artnet = new PlanktonLighting::PLDeviceArtnet();
-  bool res = artnet->initDevice("192.168.2.200 6454 0 0 0 1");
+  bool res = artnet->initDevice("127.0.0.1 6454 0 0 0 1");
   if(res == false)
   {
     printf("Failed to init device, Crashing\n");

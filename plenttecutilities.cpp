@@ -143,7 +143,17 @@ bool PlanktonLighting::PLEnttecUtilities::closePro(FT_HANDLE &handle)
 {
   if(handle != NULL)
   {
-    FT_Close(&handle);
+    FT_STATUS status;
+    status = FT_Close(handle);
+    if(status == FT_OK)
+    {
+      return true;
+    }
+    else
+    {
+      printf("Error Disconnecting From ENTTEC DMX Pro. FTDI Error: %i\n", status);
+      return false;
+    }
     return true;
   }
   return false;
