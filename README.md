@@ -2,6 +2,7 @@
 This is a library that is designed to make it easier to support multiple lighting devices and formats. Currently only output is supported.
 
 ## Currently Supported:
++ Artnet
 + Enttec DMX USB Pro (Untested) [1,2]
 + Enttec DMX USB Pro Mk2 [2]
 
@@ -16,11 +17,12 @@ Note: Currently only built on Linux.
 ## Install Instructions
 1. Download and install the required prerequisites
 2. Download and extract the repository
-3. Make the library `sudo make shared`
-4. Link to library using `-L/usr/lib/ -lplanklight`
-5. OPTIONAL: build tests
+3. Make the library `make`
+4. Install the library `sudo make install`
+5. Link to library using `-L/usr/lib/ -lplanklight`
+6. OPTIONAL: build tests using `sudo make test-TestName`
 
-## Included tests
+## Included tests [4]
 **ConnectedEnttecDevices**
 Shows how many Enttec Devices are connected.
 
@@ -31,6 +33,9 @@ Sets all channels on universe 1 to zero
 Uses the EnttecPro Device and generates a 255 on channels 3 and 9 while 2 and 8 are random, generating a ocean like effect.
 
 **EnttecLoading:**  
+Uses the EnttecPro device to switch between channels 1, 2 and 3 while 4 is faded on and off.
+
+**ArtnetLoading:**  
 Uses the EnttecPro device to switch between channels 1, 2 and 3 while 4 is faded on and off.
 
 ## Known Issues
@@ -48,4 +53,5 @@ The latest version of boost can be downloaded from [the boost website](https://w
 ## Notes
 [1]: Tested with Mk2, should work with Mk1 but hasn't been tested. Trying to initialise port 2 on Mk1 may fail,  
 [2]: MIDI not supported.  
-[3]: Must be at least version 1.68 (requires `io_context` to be in `boost_asio`),
+[3]: Must be at least version 1.68 (requires `io_context` to be in `boost_asio`),  
+[4]: Tests will soon be remade to be far more useful
