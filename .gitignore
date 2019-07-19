@@ -32,8 +32,21 @@
 *.out
 *.app
 build
+test-*
+
+#CMAKE From Github
+CMakeLists.txt.user
+CMakeCache.txt
+CMakeFiles
+CMakeScripts
+Testing
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_deps
 
 #Cannot Be Sent Due To Copyright
 ftd2xx.h
 WinTypes.h
-test-*
