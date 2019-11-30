@@ -33,33 +33,6 @@ pluniverse: pluniverse.cpp pluniverse.h
 	$(CC) -fPIC -c pluniverse.cpp
 #END
 
-#BEGIN: Tests of code, used on lighting systems which the devs have access to, fairly useless but included to show how to use the code.
-# Turn off all the lights
-test-EnttecOff: testenttecoff.cpp shared install
-	$(CC) -o test-EnttecOff testenttecoff.cpp \
-	-lpthread -L/usr/lib -lplanklight -L/usr/local/lib -lftd2xx -lboost_thread -lboost_system
-
-# Show how many enttec devices are connected
-test-ConnectedEnttecDevices: testconnectedenttecdevices.cpp shared install
-	$(CC) -o test-ConnectedEnttecDevices testconnectedenttecdevices.cpp \
-	-lpthread -L/usr/lib -lplanklight -L/usr/local/lib -lftd2xx -lboost_thread -lboost_system
-
-# Useless test
-test-EnttecOcean: testenttecocean.cpp shared install
-	$(CC) -o test-EnttecOcean testenttecocean.cpp \
-	-lpthread -L/usr/lib -lplanklight -L/usr/local/lib -lftd2xx -lboost_thread -lboost_system
-
-# Useless test
-test-ArtnetLoading: testartnetloading.cpp shared install
-	$(CC) -o test-ArtnetLoading testartnetloading.cpp \
-	-lpthread -L/usr/lib -lplanklight -L/usr/local/lib -lftd2xx -lboost_thread -lboost_system
-
-# Useless test
-test-EnttecLoading: testenttecloading.cpp shared install
-	$(CC) -o test-EnttecLoading testenttecloading.cpp \
-	-lpthread -L/usr/lib -lplanklight -L/usr/local/lib -lftd2xx -lboost_thread -lboost_system
-#END
-
 #Clean up everything this file creates
 clean:
-	$(RM) *.o test-* libplanklight.so libplanklight.a
+	$(RM) *.o libplanklight.so libplanklight.a
