@@ -20,23 +20,19 @@ Note: Currently only built on Linux.
 3. Make the library `make`
 4. Install the library `sudo make install`
 5. Link to library using `-L/usr/lib/ -lplanklight`
-6. OPTIONAL: build tests using `sudo make test-TestName`
+6. OPTIONAL: build tests within the tests folder, using `make`. Tests require library to be installed.
 
-## Included tests [4]
-**ConnectedEnttecDevices**
-Shows how many Enttec Devices are connected.
+## Included tests
+Tests are included in the `tests` folder  
 
-**EnttecOff:**  
-Sets all channels on universe 1 to zero
+**Full Off**  
+Black out the specified device
 
-**EnttecOcean:**  
-Uses the EnttecPro Device and generates a 255 on channels 3 and 9 while 2 and 8 are random, generating a ocean like effect.
+**Full On**  
+White out the specified devices
 
-**EnttecLoading:**  
-Uses the EnttecPro device to switch between channels 1, 2 and 3 while 4 is faded on and off.
-
-**ArtnetLoading:**  
-Uses the EnttecPro device to switch between channels 1, 2 and 3 while 4 is faded on and off.
+**Set All**  
+Sets all the channels on the specified device to a value
 
 ## Known Issues
 **LibFTDI Conflict**  
@@ -54,4 +50,3 @@ The latest version of boost can be downloaded from [the boost website](https://w
 [1]: Tested with Mk2, should work with Mk1 but hasn't been tested. Trying to initialise port 2 on Mk1 may fail,  
 [2]: MIDI not supported.  
 [3]: Must be at least version 1.68 (requires `io_context` to be in `boost_asio`),  
-[4]: Tests will soon be remade to be far more useful
