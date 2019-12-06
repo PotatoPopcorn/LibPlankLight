@@ -1,15 +1,19 @@
 #include "pldeviceartnet.h"
 
+//Empty constructor
 PlanktonLighting::PLDeviceArtnet::PLDeviceArtnet()
 {
 
 }
 
+//Empty destructor
 PlanktonLighting::PLDeviceArtnet::~PLDeviceArtnet()
 {
 
 }
 
+//Start artnet device, args must have the format:
+//[IP Address] [Port] [Physical] [Subnet] [Net] [Send Sequence]
 bool PlanktonLighting::PLDeviceArtnet::initDevice(std::string args)
 {
   //Initialize values
@@ -34,13 +38,20 @@ bool PlanktonLighting::PLDeviceArtnet::initDevice(std::string args)
 	return true;
 }
 
+//Stop the artnet device
 bool PlanktonLighting::PLDeviceArtnet::closeDevice()
 {
   m_mainLoopAlive = false;
 	m_tgroup.join_all();
+
+    m_socket->close();
+    delete m_socket;
+    delete m_universe;
+
 	return true;
 }
 
+//Sends the universe to the device
 bool PlanktonLighting::PLDeviceArtnet::sendDMX(PlanktonLighting::PLUniverse *universe)
 {
   //Copy values from parsed universe into
@@ -51,12 +62,14 @@ bool PlanktonLighting::PLDeviceArtnet::sendDMX(PlanktonLighting::PLUniverse *uni
   return true;
 }
 
+//Processes a message sent to the device, used to access aditional features
 std::string PlanktonLighting::PLDeviceArtnet::sendMSG(std::string args)
 {
   std::string retStr;
   return retStr;
 }
 
+//A private function, used to set all the variables
 bool PlanktonLighting::PLDeviceArtnet::processArgs(std::string args)
 {
   //Turn args into a vector and check all required have been parsed
@@ -88,6 +101,7 @@ bool PlanktonLighting::PLDeviceArtnet::processArgs(std::string args)
 
 }
 
+//Implements the Artnet sequence
 void PlanktonLighting::PLDeviceArtnet::incrementSequence()
 {
   if(m_sendSeq)
@@ -103,6 +117,7 @@ void PlanktonLighting::PLDeviceArtnet::incrementSequence()
   }
 }
 
+//Run inside the thread, ensures that data is constantly sent. This function is also responsible for sending the packets.
 void PlanktonLighting::PLDeviceArtnet::keepAlive()
 {
   while (m_mainLoopAlive)

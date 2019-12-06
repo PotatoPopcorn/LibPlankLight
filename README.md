@@ -23,7 +23,8 @@ Note: Currently only built on Linux.
 6. OPTIONAL: build tests within the tests folder, using `make`. Tests require library to be installed.
 
 ## Included tests
-Tests are included in the `tests` folder  
+Tests are included in the `tests` folder. Tests can be run using the device name (`enttecpro`, `artnet`, or `dummy`) and the relevant init variables which are shown in the wiki.  
+e.g. `test-[name] enttecpro 0 1`
 
 **Full Off**  
 Black out the specified device

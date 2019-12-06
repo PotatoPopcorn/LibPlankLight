@@ -1,10 +1,12 @@
 #include "pldeviceenttecpro.h"
 
-//Empty constructor and destructor
+//Empty constructor
 PlanktonLighting::PLDeviceEnttecPro::PLDeviceEnttecPro()
 {
 
 }
+
+//Empty destructor
 PlanktonLighting::PLDeviceEnttecPro::~PLDeviceEnttecPro()
 {
 

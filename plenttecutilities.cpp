@@ -1,11 +1,12 @@
 #include "plenttecutilities.h"
 
-//Empty constructor and destructor
+//Empty constructor
 PlanktonLighting::PLEnttecUtilities::PLEnttecUtilities()
 {
 
 }
 
+//Empty destructor
 PlanktonLighting::PLEnttecUtilities::~PLEnttecUtilities()
 {
 

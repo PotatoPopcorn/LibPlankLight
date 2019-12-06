@@ -26,9 +26,6 @@ pldeviceenttecpro: pldeviceenttecpro.cpp pldeviceenttecpro.h
 plenttecutilities: plenttecutilities.cpp plenttecutilities.h
 	$(CC) -fPIC -c plenttecutilities.cpp
 
-plnetworkutilities: plnetworkutilities.cpp plnetworkutilities.h
-	$(CC) -fPIC -c plnetworkutilities.cpp
-
 pluniverse: pluniverse.cpp pluniverse.h
 	$(CC) -fPIC -c pluniverse.cpp
 #END
