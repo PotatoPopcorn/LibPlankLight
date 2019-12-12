@@ -4,6 +4,8 @@
 #include <string>
 #include <vector>
 
+#include "plenttecutilities.h"
+
 namespace PlanktonLighting{
   class PLDevices{
   public:
