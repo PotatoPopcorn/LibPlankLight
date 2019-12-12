@@ -12,5 +12,15 @@ plenttecutilities.cpp plenttecutilities.h
 pluniverse.cpp pluniverse.h)
 
 target_link_libraries(planklight PUBLIC -lpthread)
-find_package(Boost 1.68 REQUIRED COMPONENTS thread system)
 target_link_libraries(planklight PUBLIC -lftd2xx)
+find_package(Boost 1.68 REQUIRED COMPONENTS thread system)
+
+
+#Handle Installing
+#Source: https://foonathan.net/2016/03/cmake-install/
+
+set(tool_dest "bin")
+set(include_dest "include")
+set(main_lib_dest "lib")
+
+install(TARGETS planklight DESTINATION "${main_lib_dest}")
