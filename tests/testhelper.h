@@ -6,9 +6,9 @@
 
 #include <string>
 
-#include "../pldeviceartnet.h"
-#include "../pldeviceenttecpro.h"
-#include "../pluniverse.h"
+#include "../src/pldeviceartnet.h"
+#include "../src/pldeviceenttecpro.h"
+#include "../src/pluniverse.h"
 
 class TestHelper
 {

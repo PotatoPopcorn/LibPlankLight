@@ -2,7 +2,7 @@
 #include <string>
 #include <vector>
 
-#include "../pldevices.h"
+#include "../src/pldevices.h"
 
 int main(int argc, char **argv)
 {

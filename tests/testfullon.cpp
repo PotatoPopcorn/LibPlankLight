@@ -1,7 +1,7 @@
 #include <cstdio>
 #include <cstdlib>
 
-#include "../pluniverse.h"
+#include "../src/pluniverse.h"
 
 #include "testhelper.h"
 
