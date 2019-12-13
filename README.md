@@ -8,23 +8,31 @@ This is a library that is designed to make it easier to support multiple lightin
 
 See notes at the bottom
 
-## Required Libraries
+## Required Libraries and Tools
++ CMake (https://cmake.org/)
 + Boost (https://www.boost.org/) [3]
 + FTD2xx Drivers (https://www.ftdichip.com/Drivers/D2XX.htm)
 
 Note: Currently only built on Linux.
 
 ## Install Instructions
+### Linux
 1. Download and install the required prerequisites
 2. Download and extract the repository
-3. Make the library `make`
-4. Install the library `sudo make install`
-5. Link to library using `-L/usr/lib/ -lplanklight`
+3. Open in CMake and Configure, fixing any issues that appear
+4. Generate the CMake files
+5. Find navigate to where the CMake files were generated
+3. Make the library using `make`
+4. Install the library using `sudo make install`
+5. Link to library using `-L/path/from/cmake/lib -lplanklight`
 6. OPTIONAL: build tests within the tests folder, using `make`. Tests require library to be installed.
 
 ## Included tests
 Tests are included in the `tests` folder. Tests can be run using the device name (`enttecpro`, `artnet`, or `dummy`) and the relevant init variables which are shown in the wiki.  
 e.g. `test-[name] enttecpro 0 1`
+
+**Devices**
+Used to test the devices class and see what is connected.
 
 **Full Off**  
 Black out the specified device
