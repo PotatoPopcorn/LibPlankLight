@@ -11,9 +11,9 @@ See notes at the bottom
 ## Required Libraries and Tools
 + CMake (https://cmake.org/)
 + Boost (https://www.boost.org/) [3]
-+ FTD2xx Drivers (https://www.ftdichip.com/Drivers/D2XX.htm)
++ FTD2xx Drivers (https://www.ftdichip.com/Drivers/D2XX.htm) [4]
 
-Note: Currently only built on Linux.
+Note: Currently only built on Linux, it should work on Windows if boost can be found (I will add instructions soon). No clue about MacOS.
 
 ## Install Instructions
 ### Linux
@@ -31,7 +31,7 @@ Note: Currently only built on Linux.
 Tests are included in the `tests` folder. Tests can be run using the device name (`enttecpro`, `artnet`, or `dummy`) and the relevant init variables which are shown in the wiki.  
 e.g. `test-[name] enttecpro 0 1`
 
-**Devices**
+**Devices**  
 Used to test the devices class and see what is connected.
 
 **Full Off**  
@@ -55,7 +55,11 @@ sudo rmmod usbserial
 When installing, please make sure that your version of boost is later than 1.68, at time of writing the Ubuntu repositories use version 1.65 which will not work since there are changes with the `asio` library.  
 The latest version of boost can be downloaded from [the boost website](https://www.boost.org/).
 
+## Licence
+This project is released under the GNU LGPL v3. The full licence is available in LICENCE.
+
 ## Notes
 [1]: Tested with Mk2, should work with Mk1 but hasn't been tested. Trying to initialise port 2 on Mk1 may fail,  
 [2]: MIDI not supported.  
 [3]: Must be at least version 1.68 (requires `io_context` to be in `boost_asio`),  
+[4]: You will need `ftd2xx.h` and `WinTypes.h` from the FTD2xx drivers to be included
