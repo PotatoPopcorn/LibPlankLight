@@ -40,9 +40,9 @@ bool PlanktonLighting::PLDeviceEnttecPro::initDevice(std::string args)
     return false;
   }
 
-  if(outputUniverse == 2)
+  if(!utils.startUni2(handle))
   {
-    return utils.startUni2(handle);
+    return false;
   }
   return true;
 }
@@ -54,7 +54,8 @@ bool PlanktonLighting::PLDeviceEnttecPro::closeDevice()
 }
 
 //Send DMX to Enttec Device using plenttecutilities
-bool PlanktonLighting::PLDeviceEnttecPro::sendDMX(PlanktonLighting::PLUniverse *universe)
+bool PlanktonLighting::PLDeviceEnttecPro::sendDMX(PlanktonLighting::PLUniverse
+        *universe, int outUni)
 {
   unsigned char dmxBuffer[513];
   memset(dmxBuffer,0,sizeof(dmxBuffer));
@@ -62,11 +63,11 @@ bool PlanktonLighting::PLDeviceEnttecPro::sendDMX(PlanktonLighting::PLUniverse *
   {
     dmxBuffer[i] = universe->getChan(i);
   }
-  if(outputUniverse == 1)
+  if(outUni == 1)
   {
     utils.sendData(6, dmxBuffer, 513, handle);
   }
-  else if (outputUniverse == 2)
+  else if (outUni == 2)
   {
     utils.sendData(202, dmxBuffer, 513, handle);
   }
@@ -75,6 +76,33 @@ bool PlanktonLighting::PLDeviceEnttecPro::sendDMX(PlanktonLighting::PLUniverse *
     printf("OutputUniverse misconfigured\n");
   }
   return true;
+
+}
+
+//Calls the private version of sendDMX and uses the default universe
+bool PlanktonLighting::PLDeviceEnttecPro::sendDMX(PlanktonLighting::PLUniverse
+        *universe)
+{
+    return sendDMX(universe, defaultOutputUniverse);
+}
+
+bool PlanktonLighting::PLDeviceEnttecPro::sendDMX(PlanktonLighting::PLUniverse
+        *universe, std::string args)
+{
+    if(args == "universe=1")
+    {
+        return sendDMX(universe, 1);
+    }
+    else if (args == "universe=2")
+    {
+        return sendDMX(universe, 2);
+    }
+    else if (args == "")
+    {
+        return sendDMX(universe);
+    }
+    printf("Bad args for Enttec SendDMX");
+    return false;
 
 }
 
@@ -102,11 +130,11 @@ bool PlanktonLighting::PLDeviceEnttecPro::processArgs(std::string args)
 
   //Parse outputUniverse
   if(argVec[1] == "1"){
-    outputUniverse = 1;
+    defaultOutputUniverse = 1;
   }
   else if (argVec[1] == "2")
   {
-    outputUniverse = 2;
+    defaultOutputUniverse = 2;
   }
   else
   {

@@ -42,6 +42,7 @@ namespace PlanktonLighting
     bool closeDevice();
 
     bool sendDMX(PlanktonLighting::PLUniverse *universe);
+    bool sendDMX(PlanktonLighting::PLUniverse *universe, std::string args);
     std::string sendMSG(std::string args);
   private:
     //Settings:
@@ -51,13 +52,14 @@ namespace PlanktonLighting
     DWORD txBufferSize = 40960;
 
     int devNum = 0;
-    int outputUniverse = 1;
+    int defaultOutputUniverse = 1;
 
     FT_HANDLE handle;
 
     PlanktonLighting::PLEnttecUtilities utils;
 
     bool processArgs(std::string args);
+    bool sendDMX(PlanktonLighting::PLUniverse *universe, int outUni);
 
   };
 }

@@ -53,6 +53,13 @@ bool PlanktonLighting::PLDevice::sendDMX(PlanktonLighting::PLUniverse *universe)
   return false;
 }
 
+//Generic function for sending DMX to the device
+bool PlanktonLighting::PLDevice::sendDMX(PlanktonLighting::PLUniverse *universe,
+        std::string args)
+{
+  return sendDMX(universe);
+}
+
 //Generic function for sending control messages to the device
 std::string PlanktonLighting::PLDevice::sendMSG(std::string args)
 {

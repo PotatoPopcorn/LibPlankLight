@@ -33,6 +33,7 @@
 *.app
 build
 test-*
+temptest.cpp
 
 #CMAKE From Github
 CMakeLists.txt.user

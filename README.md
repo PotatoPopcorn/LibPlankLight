@@ -56,7 +56,7 @@ When installing, please make sure that your version of boost is later than 1.68,
 The latest version of boost can be downloaded from [the boost website](https://www.boost.org/).
 
 ## Licence
-This project is released under the GNU LGPL v3. The full licence is available in LICENCE.
+This project is released under the GNU LGPL v3. The full licence is available in LICENCE. The tests are an exception to this and can be used under the licence at the top of the file.
 
 ## Notes
 [1]: Tested with Mk2, should work with Mk1 but hasn't been tested. Trying to initialise port 2 on Mk1 may fail,  

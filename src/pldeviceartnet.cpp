@@ -68,7 +68,8 @@ bool PlanktonLighting::PLDeviceArtnet::closeDevice()
 }
 
 //Sends the universe to the device
-bool PlanktonLighting::PLDeviceArtnet::sendDMX(PlanktonLighting::PLUniverse *universe)
+bool PlanktonLighting::PLDeviceArtnet::sendDMX(PlanktonLighting::PLUniverse
+        *universe)
 {
   //Copy values from parsed universe into
   for(int i = 1; i <= 512; i++)
@@ -76,6 +77,13 @@ bool PlanktonLighting::PLDeviceArtnet::sendDMX(PlanktonLighting::PLUniverse *uni
     m_universe->setChan(i, universe->getChan(i));
   }
   return true;
+}
+
+// Ignores args and calls function with out Argsbool
+bool PlanktonLighting::PLDeviceArtnet::sendDMX(PlanktonLighting::PLUniverse
+        *universe, std::string args)
+{
+    return sendDMX(universe);
 }
 
 //Processes a message sent to the device, used to access aditional features

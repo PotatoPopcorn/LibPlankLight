@@ -39,6 +39,7 @@ namespace PlanktonLighting
     bool closeDevice();
 
     bool sendDMX(PlanktonLighting::PLUniverse *universe);
+    bool sendDMX(PlanktonLighting::PLUniverse *universe, std::string args);
     std::string sendMSG(std::string args);
   private:
     bool m_mainLoopAlive = false;
