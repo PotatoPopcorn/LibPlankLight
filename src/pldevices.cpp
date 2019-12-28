@@ -36,9 +36,13 @@ std::vector<std::string> PlanktonLighting::PLDevices::getAvailableDevices()
     int numEntDevs = entUtils.countDevices();
     for(int i = 0; i < numEntDevs; ++i)
     {
-        std::string deviceIdent = "enttecpro ";
-        deviceIdent.append(std::to_string(i));
-        devices.push_back(deviceIdent);
+        if(entUtils.isProDevice(i))
+        {
+            std::string deviceIdent = "enttecpro ";
+            deviceIdent.append(std::to_string(i));
+            devices.push_back(deviceIdent);
+        }
+
     }
 
     return devices;

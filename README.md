@@ -3,8 +3,7 @@ This is a library that is designed to make it easier to support multiple lightin
 
 ## Currently Supported:
 + Artnet
-+ Enttec DMX USB Pro (Untested) [1,2]
-+ Enttec DMX USB Pro Mk2 [2]
++ Enttec DMX USB Pro Mk2 [1, 2]
 
 See notes at the bottom
 
@@ -59,7 +58,7 @@ The latest version of boost can be downloaded from [the boost website](https://w
 This project is released under the GNU LGPL v3. The full licence is available in LICENCE. The tests are an exception to this and can be used under the licence at the top of the file.
 
 ## Notes
-[1]: Tested with Mk2, should work with Mk1 but hasn't been tested. Trying to initialise port 2 on Mk1 may fail,  
+[1]: Mk 1 may work with the code, it has never been tested and the results may not be stable  
 [2]: MIDI not supported.  
 [3]: Must be at least version 1.68 (requires `io_context` to be in `boost_asio`),  
 [4]: You will need `ftd2xx.h` and `WinTypes.h` from the FTD2xx drivers to be included
