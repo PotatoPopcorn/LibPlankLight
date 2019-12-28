@@ -101,7 +101,7 @@ bool PlanktonLighting::PLDeviceEnttecPro::sendDMX(PlanktonLighting::PLUniverse
     {
         return sendDMX(universe);
     }
-    printf("Bad args for Enttec SendDMX");
+    printf("Bad args for Enttec SendDMX\n");
     return false;
 
 }
