@@ -41,6 +41,9 @@ namespace PlanktonLighting
     private:
         int devNum = 0;
         int frequency = 25;
+
+        FT_HANDLE handle;
+
         bool processArgs(std::string args);
     };
 }

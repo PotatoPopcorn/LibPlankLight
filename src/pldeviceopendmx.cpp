@@ -30,12 +30,43 @@ PlanktonLighting::PLDeviceOpenDMX::~PLDeviceOpenDMX()
 
 bool PlanktonLighting::PLDeviceOpenDMX::initDevice(std::string args)
 {
-
+    if(!processArgs(args))
+    {
+      return false;
+    }
+    FT_STATUS status;
+    status = FT_Open(devNum, &handle);
+    if(status != FT_OK)
+    {
+        printf("Error opening OpenDMX device, FTDI Error: %u\n", status);
+        return false;
+    }
+    status = FT_SetBaudRate(handle, 250000);
+    status = FT_SetDataCharacteristics(handle, FT_BITS_8, FT_STOP_BITS_2,
+            FT_PARITY_NONE);
+    status = FT_Purge (handle, FT_PURGE_RX | FT_PURGE_TX);
+    status = FT_ClrRts(handle);
+    // TODO Create Thread
 }
 
 bool PlanktonLighting::PLDeviceOpenDMX::closeDevice()
 {
-
+    // TODO: Kill Thread
+    if(handle != NULL)
+    {
+      FT_STATUS status;
+      status = FT_Close(handle);
+      if(status == FT_OK)
+      {
+        return true;
+      }
+      else
+      {
+        printf("Error Disconnecting From OpenDMX. FTDI Error: %i\n", status);
+        return false;
+      }
+    }
+    return false;
 }
 
 bool PlanktonLighting::PLDeviceOpenDMX::sendDMX(PlanktonLighting::PLUniverse *uni)
@@ -50,7 +81,7 @@ bool PlanktonLighting::PLDeviceOpenDMX::sendDMX(PlanktonLighting::PLUniverse *un
 
 std::string PlanktonLighting::PLDeviceOpenDMX::sendMSG(std::string args)
 {
-
+    return "";
 }
 
 bool PlanktonLighting::PLDeviceOpenDMX::processArgs(std::string args)

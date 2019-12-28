@@ -4,6 +4,7 @@ This is a library that is designed to make it easier to support multiple lightin
 ## Currently Supported:
 + Artnet
 + Enttec DMX USB Pro Mk2 [1, 2]
++ Enttec OpenDMX USB   
 
 See notes at the bottom
 
