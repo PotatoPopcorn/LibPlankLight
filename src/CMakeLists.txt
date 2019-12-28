@@ -6,7 +6,8 @@ DESCRIPTION "A Lighting Library that allows easy implementation of various light
 add_library(planklight SHARED
 pldevice.cpp pldevice.h
 pldeviceartnet.cpp pldeviceartnet.h
-pldeviceenttecpro.cpp pldeviceartnet.h
+pldeviceenttecpro.cpp pldeviceenttecpro.h
+pldeviceopendmx.cpp pldeviceopendmx.h
 pldevices.cpp pldevices.h
 plenttecutilities.cpp plenttecutilities.h
 pluniverse.cpp pluniverse.h)
