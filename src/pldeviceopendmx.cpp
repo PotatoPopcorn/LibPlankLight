@@ -46,12 +46,17 @@ bool PlanktonLighting::PLDeviceOpenDMX::initDevice(std::string args)
             FT_PARITY_NONE);
     status = FT_Purge (handle, FT_PURGE_RX | FT_PURGE_TX);
     status = FT_ClrRts(handle);
+    memset(uni, 0, 513);
     // TODO Create Thread
+    mainLoopAlive = true;
+  	m_tgroup.create_thread(boost::bind(&PlanktonLighting::PLDeviceOpenDMX::keepAlive, this));
+
 }
 
 bool PlanktonLighting::PLDeviceOpenDMX::closeDevice()
 {
-    // TODO: Kill Thread
+    mainLoopAlive = false;
+  	m_tgroup.join_all();
     if(handle != NULL)
     {
       FT_STATUS status;
@@ -69,14 +74,20 @@ bool PlanktonLighting::PLDeviceOpenDMX::closeDevice()
     return false;
 }
 
-bool PlanktonLighting::PLDeviceOpenDMX::sendDMX(PlanktonLighting::PLUniverse *uni)
+bool PlanktonLighting::PLDeviceOpenDMX::sendDMX(PlanktonLighting::PLUniverse *universe)
 {
-
+    updateDMXMutex.lock();
+    for(int i = 1; i <= 512; i++)
+    {
+        uni[i] = universe->getChan(i);
+    }
+    updateDMXMutex.unlock();
+    return true;
 }
 
-bool PlanktonLighting::PLDeviceOpenDMX::sendDMX(PlanktonLighting::PLUniverse *uni, std::string args)
+bool PlanktonLighting::PLDeviceOpenDMX::sendDMX(PlanktonLighting::PLUniverse *universe, std::string args)
 {
-    sendDMX(uni);
+    sendDMX(universe);
 }
 
 std::string PlanktonLighting::PLDeviceOpenDMX::sendMSG(std::string args)
@@ -86,5 +97,20 @@ std::string PlanktonLighting::PLDeviceOpenDMX::sendMSG(std::string args)
 
 bool PlanktonLighting::PLDeviceOpenDMX::processArgs(std::string args)
 {
+
+}
+
+void PlanktonLighting::PLDeviceOpenDMX::keepAlive()
+{
+    FT_STATUS status;
+    while(mainLoopAlive)
+    {
+        updateDMXMutex.lock();
+        status = FT_SetBreakOn(handle);
+        status = FT_SetBreakOff(handle);
+        status = FT_Write(handle, uni, 513, &packetsSent);
+        updateDMXMutex.unlock();
+    }
+    boost::this_thread::sleep_for(boost::chrono::milliseconds(1000/frequency));
 
 }

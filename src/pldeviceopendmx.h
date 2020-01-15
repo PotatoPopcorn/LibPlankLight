@@ -19,6 +19,9 @@
 
 #include <string>
 
+#include <boost/chrono.hpp>
+#include <boost/thread.hpp> 
+
 #include "ftd2xx.h"
 
 #include "pldevice.h"
@@ -41,10 +44,17 @@ namespace PlanktonLighting
     private:
         int devNum = 0;
         int frequency = 25;
+        unsigned int packetsSent = 0;
+        bool mainLoopAlive;
+        char uni[513];
 
         FT_HANDLE handle;
 
+        boost::thread_group m_tgroup;
+        boost::mutex updateDMXMutex;
+
         bool processArgs(std::string args);
+        void keepAlive();
     };
 }
 
