@@ -26,6 +26,7 @@
 
 #include "../src/pldeviceartnet.h"
 #include "../src/pldeviceenttecpro.h"
+#include "../src/pldeviceopendmx.h"
 #include "../src/pluniverse.h"
 
 class TestHelper
@@ -40,6 +41,7 @@ private:
     std::string deviceMode;
     PlanktonLighting::PLDeviceEnttecPro *enttecProDevice;
     PlanktonLighting::PLDeviceArtnet *artnetDevice;
+    PlanktonLighting::PLDeviceOpenDMX *opendmxDevice;
 };
 
 #endif //TESTS_TESTHELPER_H

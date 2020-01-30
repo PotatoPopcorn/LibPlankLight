@@ -47,6 +47,7 @@ bool PlanktonLighting::PLDeviceOpenDMX::initDevice(std::string args)
     status = FT_Purge (handle, FT_PURGE_RX | FT_PURGE_TX);
     status = FT_ClrRts(handle);
     memset(uni, 0, 513);
+    printf("OPENDMX STARTED\n");
     // TODO Create Thread
     mainLoopAlive = true;
   	m_tgroup.create_thread(boost::bind(&PlanktonLighting::PLDeviceOpenDMX::keepAlive, this));
@@ -97,7 +98,30 @@ std::string PlanktonLighting::PLDeviceOpenDMX::sendMSG(std::string args)
 
 bool PlanktonLighting::PLDeviceOpenDMX::processArgs(std::string args)
 {
+    //Turn args into a vector and check all required have been parsed
+    std::vector<std::string> argVec;
+    boost::split(argVec, args, boost::is_any_of(" "), boost::token_compress_on );
+    if(argVec.size() != 2)
+    {
+      printf("Incorrect number of arguments sent to Enttec Pro\n");
+      return false;
+    }
 
+    //Parse the device number
+    devNum = atoi(argVec[0].c_str());
+
+    int newFreq = atoi(argVec[1].c_str());
+    if(newFreq < 50 && newFreq > 0)
+    {
+        frequency = newFreq;
+    }
+    else
+    {
+        printf("Invalit frequency sent to OpenDMX");
+        return false;
+    }
+
+    return true;
 }
 
 void PlanktonLighting::PLDeviceOpenDMX::keepAlive()

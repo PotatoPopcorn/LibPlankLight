@@ -56,6 +56,18 @@ bool TestHelper::connectDevice(int argc, char **argv)
         artnetDevice->initDevice(args);
         return true;
     }
+    else if (!strcmp(argv[1], "opendmx"))
+    {
+        printf("LaunchingOpenDMX\n");
+        deviceMode = "opendmx";
+        opendmxDevice = new PlanktonLighting::PLDeviceOpenDMX;
+        std::string args = "";
+        args.append(argv[2]);
+        args.append(" ");
+        args.append(argv[3]);
+        opendmxDevice->initDevice(args);
+        return true;
+    }
     else if (!strcmp(argv[1], "dummy"))
     {
         printf("Launching Dummy\n");
@@ -86,6 +98,10 @@ bool TestHelper::disconnectDevice()
         artnetDevice->closeDevice();
         return true;
     }
+    else if(deviceMode == "opendmx")
+    {
+        opendmxDevice->closeDevice();
+    }
     return false;
 }
 
@@ -102,6 +118,10 @@ bool TestHelper::sendDMX(PlanktonLighting::PLUniverse *universe)
     else if(deviceMode == "artnet")
     {
         return artnetDevice->sendDMX(universe);
+    }
+    else if(deviceMode == "opendmx")
+    {
+        return opendmxDevice->sendDMX(universe);
     }
     return false;
 }

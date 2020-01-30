@@ -33,6 +33,10 @@ int main(int argc, char **argv)
     PlanktonLighting::PLUniverse *uni = new PlanktonLighting::PLUniverse();
     uni->whiteout();
     th.sendDMX(uni);
+    for(int i = 0; i < 10000000; ++i)
+    {
+        printf("\n");
+    }
     th.disconnectDevice();
     return 0;
 }

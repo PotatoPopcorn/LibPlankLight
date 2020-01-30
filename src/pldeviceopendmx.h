@@ -20,7 +20,8 @@
 #include <string>
 
 #include <boost/chrono.hpp>
-#include <boost/thread.hpp> 
+#include <boost/thread.hpp>
+#include <boost/algorithm/string.hpp>
 
 #include "ftd2xx.h"
 

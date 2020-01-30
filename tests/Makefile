@@ -15,19 +15,19 @@ testhelper.o: testhelper.cpp testhelper.h
 	$(CC) -c testhelper.cpp
 
 test-devices: testdevices.cpp
-	$(CC) testdevices.cpp -o test-devices -lpthread -L/usr/local/lib -lplanklight -L/usr/lib -lftd2xx -lboost_thread -lboost_system
+	$(CC) testdevices.cpp -o test-devices -lpthread -L/usr/local/lib -lplanklight -L/usr/lib -lftd2xx -lboost_thread -lboost_system -lboost_chrono
 
 test-fulloff: testfulloff.cpp testhelper.o
-	$(CC) testfulloff.cpp testhelper.o -o test-fulloff -lpthread -L/usr/local/lib -lplanklight -L/usr/lib -lftd2xx -lboost_thread -lboost_system
+	$(CC) testfulloff.cpp testhelper.o -o test-fulloff -lpthread -L/usr/local/lib -lplanklight -L/usr/lib -lftd2xx -lboost_thread -lboost_system -lboost_chrono
 
 test-fullon: testfullon.cpp testhelper.o
-	$(CC) testfullon.cpp testhelper.o -o test-fullon -lpthread -L/usr/local/lib -lplanklight -L/usr/lib -lftd2xx -lboost_thread -lboost_system
+	$(CC) testfullon.cpp testhelper.o -o test-fullon -lpthread -L/usr/local/lib -lplanklight -L/usr/lib -lftd2xx -lboost_thread -lboost_system -lboost_chrono
 
 test-setall: testsetall.cpp testhelper.o
-	$(CC) testsetall.cpp testhelper.o -o test-setall -lpthread -L/usr/local/lib -lplanklight -L/usr/lib -lftd2xx -lboost_thread -lboost_system
+	$(CC) testsetall.cpp testhelper.o -o test-setall -lpthread -L/usr/local/lib -lplanklight -L/usr/lib -lftd2xx -lboost_thread -lboost_system -lboost_chrono
 
 test-temp: temptest.cpp
-	$(CC) temptest.cpp -o test-temp -lpthread -L/usr/local/lib -lplanklight -L/usr/lib -lftd2xx -lboost_thread -lboost_system
+	$(CC) temptest.cpp -o test-temp -lpthread -L/usr/local/lib -lplanklight -L/usr/lib -lftd2xx -lboost_thread -lboost_system -lboost_chrono
 
 clean:
 	$(RM) *.o test-*
