@@ -1,4 +1,4 @@
-//Copyright 2019 PotatoPopcorn (Tony Kerr)
+//Copyright 2020 PotatoPopcorn (Tony Kerr)
 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -117,7 +117,7 @@ bool PlanktonLighting::PLDeviceOpenDMX::processArgs(std::string args)
     }
     else
     {
-        printf("Invalit frequency sent to OpenDMX");
+        printf("Invalid frequency sent to OpenDMX");
         return false;
     }
 

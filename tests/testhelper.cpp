@@ -1,4 +1,4 @@
-// Copyright (C) 2019 by PotatoPopcorn (Tony Kerr)
+// Copyright (C) 2020 by PotatoPopcorn (Tony Kerr)
 //
 
 // NOTE: Only the tests are subject to the following licence, The main source

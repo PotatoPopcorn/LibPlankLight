@@ -1,4 +1,4 @@
-// Copyright (C) 2019 by PotatoPopcorn (Tony Kerr)
+// Copyright (C) 2020 by PotatoPopcorn (Tony Kerr)
 //
 
 // NOTE: Only the tests are subject to the following licence, The main source
@@ -35,7 +35,8 @@ int main(int argc, char **argv)
     th.sendDMX(uni);
     for(int i = 0; i < 10000000; ++i)
     {
-        printf("\n");
+        printf(" ");
+        fflush(stdout);
     }
     th.disconnectDevice();
     return 0;

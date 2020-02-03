@@ -1,4 +1,4 @@
-//Copyright 2019 PotatoPopcorn (Tony Kerr)
+//Copyright 2020 PotatoPopcorn (Tony Kerr)
 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -23,6 +23,7 @@ std::vector<std::string> PlanktonLighting::PLDevices::getSupportedTypes()
     types.push_back("dummy");
     types.push_back("artnet");
     types.push_back("enttecpro");
+    types.push_back("opendmx");
     return types;
 }
 
@@ -42,7 +43,12 @@ std::vector<std::string> PlanktonLighting::PLDevices::getAvailableDevices()
             deviceIdent.append(std::to_string(i));
             devices.push_back(deviceIdent);
         }
-
+        else
+        {
+            std::string deviceIdent = "ftdi ";
+            deviceIdent.append(std::to_string(i));
+            devices.push_back(deviceIdent);
+        }
     }
 
     return devices;
